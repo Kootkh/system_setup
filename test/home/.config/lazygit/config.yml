@@ -1,0 +1,25 @@
+os:
+  editPreset: 'vim'
+  edit: 'myeditor {{filename}}'
+  editAtLine: 'myeditor --line={{line}} {{filename}}'
+  editAtLineAndWait: 'myeditor --block --line={{line}} {{filename}}'
+  editInTerminal: true
+  openDirInEditor: 'myeditor {{dir}}'
+
+keybinding:
+  universal:
+    return: '<c-/>'
+
+gui:
+  theme:
+    selectedLineBgColor:
+      - default
+      # - underline
+    selectedRangeBgColor:
+      - default
+      # - underline
+
+git:
+  paging:
+    colorArg: never
+    pager: delta --dark --paging=never

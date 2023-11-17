@@ -1,0 +1,5 @@
+ENTRY "sh: test-media" URL "/sh://veprikov@test-media/"
+ENTRY "sh: test-sbc" URL "/sh://veprikov@test-sbc/"
+ENTRY "sh: test-centos7-ast18" URL "/sh://veprikov@192.168.56.106/"
+ENTRY "home - veprikov" URL "/home/veprikov"
+ENTRY "sh: test-sic" URL "/sh://veprikov@test-sic/"

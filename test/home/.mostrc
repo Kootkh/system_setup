@@ -1,0 +1,29 @@
+% Color settings
+% color OBJECT-NAME FOREGROUND-COLOR BACKGROUND-COLOR
+%color normal lightgray black
+color normal lightgray black
+%color status yellow blue
+color status black cyan
+color underline yellow black
+color overstrike brightblue black
+
+% Keybindings
+setkey bob "g"
+setkey eob "G"
+setkey page_down "d"
+setkey page_up "u"
+
+unsetkey ":"
+setkey next_file ":n"
+setkey find_file ":e"
+setkey next_file ":p"
+setkey toggle_options ":o"
+setkey toggle_case ":c"
+setkey delete_file ":d"
+setkey exit ":q"
+
+setkey search_backward "?"
+setkey goto_mark "'"
+setkey find_file "E"
+setkey edit "v"
+

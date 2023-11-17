@@ -1,0 +1,44 @@
+local execSourceType = GetExecSourceType()
+if execSourceType ~= 0 then
+	ShowMessage("This script is supposed to be triggered by button")
+	return
+end
+
+local btnId = GetExecSourceId()
+local settings
+local name
+
+
+if btnId == 23 then
+	settings = [[
+	{
+	   "Accounts" : [
+		  {
+			"pwd" : "example",
+			"reg_server" : "172.16.69.43:5060",
+			"user" : "ExampleBIND+281"
+		  }
+	   ]
+	}
+	]]
+	name = [[
+	{
+	   "frmMain" : 
+		  {
+			"CustomApplicationTitle" : "tSIP ExampleBIND+281",
+			"CustomCaption" : "tSIP ExampleBIND+281"
+		  }
+	}
+	]]
+
+else
+	ShowMessage("Unexpected button id!")
+	return  
+end
+
+SetButtonImage(23, "empty.bmp")
+
+SetButtonImage(btnId, "check.bmp")
+
+UpdateSettings(settings)
+UpdateSettings(name)
