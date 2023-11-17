@@ -62,11 +62,11 @@ if [[ ! -d $HOME/.local/share/fonts ]]; then
     mkdir $HOME/.local/share/fonts
 fi
 
-if [[ ! -d $HOME/tmp ]]; then
-    mkdir $HOME/tmp
+if [[ ! -d $HOME/.tmp ]]; then
+    mkdir $HOME/.tmp
 fi
 
-cd $HOME/tmp
+cd $HOME/.tmp
 
 fonts=(
 "FiraCode"
@@ -82,13 +82,22 @@ fonts=(
 "DaddyTimeMono"
 )
 
+NERDFONTS_VERSION=$(curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+
+echo "NERDFONTS_VERSION => $NERDFONTS_VERSION"
+
 for font in ${fonts[@]}
 do
 
     ### tar.xz 👉 smaller archive size - less traffic
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/$font.tar.xz
+    #wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/$font.tar.xz
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONTS_VERSION/$font.tar.xz
+    if [[ ! -d $HOME/.local/share/fonts/$font ]]; then
+        mkdir $HOME/.local/share/fonts/$font
+    fi
     tar xf $font.tar.xz -C $HOME/.local/share/fonts/$font/
-    rm $font.tar.xz
+    #rm $font.tar.xz
+    rm $font.*
 
     ### zip
     # wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/$font.zip
