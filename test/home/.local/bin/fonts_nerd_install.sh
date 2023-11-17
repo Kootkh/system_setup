@@ -1,39 +1,5 @@
 #!/usr/bin/bash
 
-#############################################################
-# Fonts
-#############################################################
-
-# check for super user privileges granter app
-# supg
-
-supg=`sudo`
-
-if [ ! -f /usr/bin/sudo ]; then
-    if [ ! -f /usr/bin/doas ]; then
-        printf "\e[1;32mInstallation require ROOT permissions. SUDO/DOAS not found.\e[0m\n"
-        exit 1
-    fi
-
-    supg=`doas`
-fi
-
-# nala Install apt replacement - nala
-if [ ! -f /usr/bin/nala ]; then
-   ${supg} apt install nala
-fi
-
-# Select fastest repos for nala
-${supg} nala fetch
-
-###############################
-# USUAL Fonts
-###############################
-# sudo apt install fonts-wine fonts-font-awesome fonts-ubuntu fonts-liberation2 fonts-liberation fonts-terminus fonts-material-design-icons-iconfont fonts-materialdesignicons-webfont fonts-cantarell
-#
-${supg} nala install fonts-wine fonts-font-awesome fonts-ubuntu fonts-liberation2 fonts-liberation fonts-terminus fonts-material-design-icons-iconfont fonts-materialdesignicons-webfont fonts-cantarell
-
-
 ###############################
 # NERD Fonts 👉 https://github.com/ryanoasis/nerd-fonts
 ###############################
@@ -132,11 +98,9 @@ do
 
 done
 
-
 ###############################
 # Weather Icons & fonts 👉 https://github.com/erikflowers/weather-icons.git
 ###############################
-
 
 fc-cache
 
