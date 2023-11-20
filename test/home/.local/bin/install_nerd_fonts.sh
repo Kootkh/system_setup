@@ -1,4 +1,7 @@
 #!/usr/bin/bash
+source ./funcs.sh
+
+check_for_root_user
 
 ###############################
 # NERD Fonts 👉 https://github.com/ryanoasis/nerd-fonts
@@ -58,15 +61,15 @@
 # UbuntuMono
 # VictorMono
 
-if [[ ! -d $HOME/.local/share/fonts ]]; then
-    mkdir $HOME/.local/share/fonts
+if [[ ! -d $real_user_home_dir/.local/share/fonts ]]; then
+    mkdir $real_user_home_dir/.local/share/fonts
 fi
 
-if [[ ! -d $HOME/.tmp ]]; then
-    mkdir $HOME/.tmp
+if [[ ! -d $real_user_home_dir/.tmp ]]; then
+    mkdir $real_user_home_dir/.tmp
 fi
 
-cd $HOME/.tmp
+cd $real_user_home_dir/.tmp
 
 fonts=(
 "FiraCode"
@@ -84,7 +87,7 @@ fonts=(
 
 NERDFONTS_VERSION=$(curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
 
-echo "NERDFONTS_VERSION => $NERDFONTS_VERSION"
+#echo "NERDFONTS_VERSION => $NERDFONTS_VERSION"
 
 for font in ${fonts[@]}
 do
@@ -92,16 +95,16 @@ do
     ### tar.xz 👉 smaller archive size - less traffic
     #wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/$font.tar.xz
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v$NERDFONTS_VERSION/$font.tar.xz
-    if [[ ! -d $HOME/.local/share/fonts/$font ]]; then
-        mkdir $HOME/.local/share/fonts/$font
+    if [[ ! -d $real_user_home_dir/.local/share/fonts/$font ]]; then
+        mkdir $real_user_home_dir/.local/share/fonts/$font
     fi
-    tar xf $font.tar.xz -C $HOME/.local/share/fonts/$font/
+    tar xf $font.tar.xz -C $real_user_home_dir/.local/share/fonts/$font/
     #rm $font.tar.xz
     rm $font.*
 
     ### zip
     # wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/$font.zip
-    # unzip $font.zip -d $HOME/.local/share/fonts/$font/
+    # unzip $font.zip -d $real_user_home_dir/.local/share/fonts/$font/
     # rm $font.zip
 
 
