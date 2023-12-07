@@ -47,8 +47,10 @@ check_for_root_user(){
 
 
     if [[ $real_user =~ root ]]; then
-        printf "\e[0;33mYou are running script as \033[5m\e[1;31mROOT\e[0m\e[0;33m user.\e[0m\n"
-        printf "\e[0;33mNot as \e[1;95muser with escalated privileges\e[0;33m!\e[0m\n"
+        #printf "\e[0;33mYou are running script as \033[5m\e[1;31mROOT\e[0m\e[0;33m user.\e[0m\n"
+        printf "\e[0;33mYou are running script as \e[5;37;41mROOT\e[0m\e[0;33m user.\e[0m\n"
+        #printf "\e[0;33mNot as \e[1;95muser with escalated privileges\e[0;33m!\e[0m\n"
+        printf "\e[0;33mNot as \e[3;30;46muser with escalated privileges\e[0;33m!\e[0m\n"
         printf "\e[0;101mAre you sure what you are doing?\e[0m\n"
         read -p "(Y/y/Д/д):" -n 1 -r
         echo    # (optional) move to a new line
@@ -102,4 +104,23 @@ select_package_manager(){
 
 }
 
+###############################
+# select super user privileges provider App
+###############################
+select_suppapp(){
+
+    if [[ -x "$(command -v doas)" ] && [ -e /etc/doas.conf ]]; then
+        suppapp=doas
+
+    elif [ -x "$(command -v sudo)" ]; then
+        suppapp=sudo
+    else
+        printf "\e[0;33mSuper-User Privileges Provider Application - \e[5;37;41mNot Found\e[0m\n"
+        printf "\e[0;33mPlease install \e[0;36;40msudo\e[0;33m/\e[0;36;40mdoas\e[0m\n"
+        exit 1
+    fi
+
+    return
+
+}
 # ...
